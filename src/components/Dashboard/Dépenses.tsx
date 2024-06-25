@@ -1,11 +1,9 @@
 "use client";
 import dynamic from "next/dynamic";
 import React from "react";
-import TableOne from "../Tables/TableOne";
+import InvoiceTable from "../Tables/InvoiceTable";
 import DefaultLayout from "../Layouts/DefaultLayout";
 import Breadcrumb from "../Breadcrumbs/Breadcrumb";
-import TableThree from "../Tables/TableThree";
-import TableTwo from "../Tables/TableTwo";
 
 const MapOne = dynamic(() => import("@/components/Maps/MapOne"), {
   ssr: false,
@@ -21,9 +19,7 @@ const Dépenses: React.FC = () => {
       <Breadcrumb pageName="Tables" />
 
       <div className="flex flex-col gap-10">
-        <TableOne />
-        <TableTwo />
-        <TableThree />
+        <InvoiceTable />
       </div>
     </DefaultLayout>
   );

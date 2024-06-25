@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "This is Next.js Tables page for TailAdmin - Next.js Tailwind CSS Admin Dashboard Template",
 };
 
-const Dépenses = () => {
+const TablesPage = () => {
   return (
     <DefaultLayout>
       <Breadcrumb pageName="Tables" />
@@ -26,4 +26,4 @@ const Dépenses = () => {
   );
 };
 
-export default Dépenses;
+export default TablesPage;

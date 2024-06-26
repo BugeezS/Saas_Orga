@@ -11,13 +11,32 @@ interface Depense {
 
 const InvoiceTable = () => {
   const [depenses, setDepenses] = useState<Depense[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("/api/depenses")
-      .then((response) => response.json())
-      .then((data) => setDepenses(data))
-      .catch((error) => console.error("Error fetching data:", error));
+    fetch("/api")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Error fetching data: ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (Array.isArray(data.data)) {
+          setDepenses(data.data);
+        } else {
+          throw new Error("Unexpected data format");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setError(error.message);
+      });
   }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
